@@ -2,3 +2,4 @@ node_modules/*
 */built/*
 **/built/*
 
+.vscode/settings.json
