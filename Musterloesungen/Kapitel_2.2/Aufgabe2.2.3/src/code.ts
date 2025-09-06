@@ -18,3 +18,4 @@ const wt2: Kurs = {
 
 console.log("Kurs "+wt1.id+": " + wt1.name + " mit " + wt1.dozent);
 console.log("Kurs "+wt2.id+": " + wt2.name + " mit " + wt2.dozent);
+console.log(typeof wt1);
