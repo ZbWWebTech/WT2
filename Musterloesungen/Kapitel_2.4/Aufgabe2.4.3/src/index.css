@@ -1,4 +1,4 @@
-/* https://www.google.com/fonts#UsePlace:use/Collection:Lora:400italic,700italic|PT+Sans:400,700 */
+/* Borrowed from https://github.com/reactbuch/vote-example-v2/blob/master/app/src/index.js */
 html {
     line-height: 1.5;
     font-family: "PT Sans", sans-serif;
