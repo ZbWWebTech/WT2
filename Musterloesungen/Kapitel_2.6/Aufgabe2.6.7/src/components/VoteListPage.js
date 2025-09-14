@@ -1,7 +1,7 @@
 import React from "react";
 import VoteController from "./VoteController";
 import VoteLoadingIndicator from "./VoteLoadingIndicator";
-import { fetchJson } from "../backend";
+import { fetchJson, sendJson } from "../backend";
 
 export default function VoteListPage() {
   const [allVotes, setAllVotes] = React.useState(null);
@@ -9,6 +9,10 @@ export default function VoteListPage() {
   async function loadVotes() {
     const votes = await fetchJson("/votes");
     setAllVotes(votes);
+  }
+
+  async function saveVotes(votes) {
+    await sendJson("POST", "/votes", votes);
   }
 
   React.useEffect(() => {
@@ -19,5 +23,5 @@ export default function VoteListPage() {
     return <VoteLoadingIndicator />;
   }
 
-  return <VoteController votes={allVotes} />;
+  return <VoteController votes={allVotes} onSave={saveVotes} />;
 }

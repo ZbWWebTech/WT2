@@ -3,7 +3,7 @@ import VoteList from "./VoteList";
 import InactiveVoteComposer from "./InactiveVoteComposer";
 import VoteComposer from "./VoteComposer";
 
-export default function VoteController({ votes, onSave }) {
+export default function VoteController({ votes }) {
   const [allVotes, setAllVotes] = React.useState(votes);
   const [currentVoteId, setCurrentVoteId] = React.useState(null);
   const [voteComposerActive, setVoteComposerActive] = React.useState(false);
@@ -28,7 +28,6 @@ export default function VoteController({ votes, onSave }) {
 
   function addVote(vote) {
     setAllVotes([...allVotes, vote]);
-    onSave([...allVotes, vote]);
     closeVoteComposer();
   }
 
