@@ -1,0 +1,24 @@
+[
+    {
+        "id": "vote_1",
+        "title": "Wie ist dein Tag?",
+        "description": "Sag mir: Wie war es bisher?",
+        "choices": [
+            {
+                "id": "choice_1",
+                "title": "Gut",
+                "count": 7
+            },
+            {
+                "id": "choice_2",
+                "title": "Schlecht",
+                "count": 12
+            },
+            {
+                "id": "choice_3",
+                "title": "Nicht sicher",
+                "count": 1
+            }
+        ]
+    }
+]
