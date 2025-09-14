@@ -1,1 +1,24 @@
-[{"id":"vote_1","title":"Wie ist dein Tag?","description":"Sag mir: Wie war es bis jetzt?","choices":[{"id":"choice_1","title":"Gut","count":7},{"id":"choice_2","title":"Schlecht","count":12},{"id":"choice_3","title":"Nicht sicher","count":1}]},{"id":"vote_1757879015102","title":"F1","description":"F1T","choices":[{"title":"A1","id":"choice_0","count":0},{"title":"A2","id":"choice_1","count":0}]}]
+[
+    {
+        "id": "vote_1",
+        "title": "Wie ist dein Tag?",
+        "description": "Sag mir: Wie war es bis jetzt?",
+        "choices": [
+            {
+                "id": "choice_1",
+                "title": "Gut",
+                "count": 7
+            },
+            {
+                "id": "choice_2",
+                "title": "Schlecht",
+                "count": 12
+            },
+            {
+                "id": "choice_3",
+                "title": "Nicht sicher",
+                "count": 1
+            }
+        ]
+    }
+]
