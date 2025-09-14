@@ -11,7 +11,7 @@ export default function VotingCompontent({ vote }) {
                     {vote.title}
                     <div className="Badge">{totalVotes} Votes</div>
                 </h1>
-                <div className="Description Emphasis">{VideoDecoder.description}</div>
+                <div className="Description Emphasis">{vote.description}</div>
             </div>
             <div>
                 {vote.choices.map(choice => (
