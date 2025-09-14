@@ -4,6 +4,7 @@ export default function VoteComposer({ onSave, onDeactivate }) {
   const [voteTitle, setVoteTitle] = React.useState("");
   const [voteDescription, setVoteDescription] = React.useState("");
   const [choices, setChoices] = React.useState([""]);
+  const titleInputRef = React.useRef();
 
   function updateChoice(choiceIx, choiceTitle) {
     const newChoices = choices.map((c, ix) =>
@@ -31,6 +32,16 @@ export default function VoteComposer({ onSave, onDeactivate }) {
     onSave(newVote);
   }
 
+  function reset() {
+    // clear form
+    setVoteTitle("");
+    setVoteDescription("");
+    setChoices([""]);
+
+    // re-focus aufs erste Input-Feld
+    titleInputRef.current.focus();
+  }
+
   const formCompleted =
     voteTitle &&
     voteDescription &&
@@ -49,6 +60,7 @@ export default function VoteComposer({ onSave, onDeactivate }) {
             placeholder="Was willst du wissen ?"
             value={voteTitle}
             onChange={e => setVoteTitle(e.target.value)}
+            ref={titleInputRef}
           />
         </h1>
         <input
@@ -78,6 +90,9 @@ export default function VoteComposer({ onSave, onDeactivate }) {
           </button>
           <button className="Button" onClick={onDeactivate}>
             Abbrechen
+          </button>
+          <button className="Button" onClick={reset}>
+            Reset
           </button>
         </div>
       </div>

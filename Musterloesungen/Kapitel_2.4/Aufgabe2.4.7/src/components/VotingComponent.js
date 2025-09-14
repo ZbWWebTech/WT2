@@ -1,7 +1,7 @@
 import React from "react";
 import ChoiceBar from "./ChoiceBar";
 
-export default function VotingCompontent({ vote, onRegisterChoice, onDismissVote}) {
+export default function VotingCompontent({ vote }) {
     const totalVotes = vote.choices.reduce((prev, curr) => prev + curr.count, 0);
 
     return (
@@ -20,13 +20,10 @@ export default function VotingCompontent({ vote, onRegisterChoice, onDismissVote
                         title={choice.title} 
                         percent={choice.count * (100 / totalVotes)} 
                         count={choice.count}
-                        onClickHandler={() => onRegisterChoice(vote, choice)}
                     />
                 ))}
             </div>
-            <div className="ButtonBar">
-                <div className="Button" onClick={onDismissVote}>Später</div>
-            </div>
+
         </div>
     );
 }

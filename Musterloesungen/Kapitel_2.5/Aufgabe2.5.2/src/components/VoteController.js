@@ -13,7 +13,21 @@ export default function VoteController({ initialVotes }) {
     setCurrentVoteId(null);
   }
 
-  
+  function registerVote(vote, choice) {
+    const newVotes = allVotes.map(v =>
+      v.id !== vote.id
+        ? v
+        : {
+            ...vote,
+            choices: vote.choices.map(c =>
+              c.id !== choice.id ? c : { ...c, count: c.count + 1 }
+            )
+          }
+    );
+
+    setAllVotes(newVotes);
+  }
+
   return (
     <div>
       <VoteList
@@ -21,6 +35,7 @@ export default function VoteController({ initialVotes }) {
         currentVoteId={currentVoteId}
         onSelectVote={setCurrentVote}
         onDismissVote={unsetCurrentVote}
+        onRegisterVote={registerVote}
       />
     </div>
   );

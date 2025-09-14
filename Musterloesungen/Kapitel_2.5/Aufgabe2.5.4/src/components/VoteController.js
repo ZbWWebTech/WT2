@@ -26,6 +26,11 @@ export default function VoteController({ initialVotes }) {
     setVoteComposerActive(true);
   }
 
+  function addVote(vote) {
+    setAllVotes([...allVotes, vote]);
+    closeVoteComposer();
+  }
+
   function registerVote(vote, choice) {
     const newVotes = allVotes.map(v =>
       v.id !== vote.id
@@ -51,7 +56,7 @@ export default function VoteController({ initialVotes }) {
         onRegisterVote={registerVote}
       />
       {voteComposerActive ? (
-        <VoteComposer onDeactivate={closeVoteComposer} />
+        <VoteComposer onDeactivate={closeVoteComposer} onSave={addVote} />
       ) : (
         <InactiveVoteComposer onActivate={openVoteComposer} />
       )}

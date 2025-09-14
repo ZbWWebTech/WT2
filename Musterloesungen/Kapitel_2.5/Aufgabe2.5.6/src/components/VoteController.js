@@ -3,47 +3,97 @@ import VoteList from "./VoteList";
 import InactiveVoteComposer from "./InactiveVoteComposer";
 import VoteComposer from "./VoteComposer";
 
+function voteControllerReducer(state, action) {
+  switch (action.type) {
+    case "SET_CURRENT_VOTE":
+      return {
+        ...state,
+        currentVoteId: action.vote.id,
+        voteComposerActive: false
+      };
+    case "UNSET_CURRENT_VOTE":
+      return { ...state, currentVoteId: null };
+    case "CLOSE_VOTE_COMPOSER":
+      return { ...state, voteComposerActive: false };
+    case "OPEN_VOTE_COMPOSER":
+      return { ...state, currentVoteId: null, voteComposerActive: true };
+    case "ADD_VOTE":
+      return {
+        ...state,
+        voteComposerActive: false,
+        allVotes: [...state.allVotes, action.vote]
+      };
+    case "REGISTER_VOTE":
+      const { vote, choice } = action;
+
+      const newVotes = state.allVotes.map(v =>
+        v.id !== vote.id
+          ? v
+          : {
+              ...vote,
+              choices: vote.choices.map(c =>
+                c.id !== choice.id ? c : { ...c, count: c.count + 1 }
+              )
+            }
+      );
+
+      return {
+        ...state,
+        allVotes: newVotes
+      };
+    default:
+      throw new Error(`Invalid action: ${action.type}`);
+  }
+}
+
 export default function VoteController({ initialVotes }) {
-  const [allVotes, setAllVotes] = React.useState(initialVotes);
-  const [currentVoteId, setCurrentVoteId] = React.useState(null);
-  const [voteComposerActive, setVoteComposerActive] = React.useState(false);
+  const [
+    { allVotes, currentVoteId, voteComposerActive },
+    dispatch
+  ] = React.useReducer(voteControllerReducer, {
+    allVotes: initialVotes,
+    currentVoteId: null,
+    voteComposerActive: false
+  });
 
   function setCurrentVote(vote) {
-    closeVoteComposer();
-    setCurrentVoteId(vote.id);
+    dispatch({
+      type: "SET_CURRENT_VOTE",
+      vote
+    });
   }
 
   function unsetCurrentVote() {
-    setCurrentVoteId(null);
+    dispatch({
+      type: "UNSET_CURRENT_VOTE"
+    });
   }
 
   function closeVoteComposer() {
-    setVoteComposerActive(false);
+    dispatch({
+      type: "CLOSE_VOTE_COMPOSER"
+    });
   }
 
   function openVoteComposer() {
-    unsetCurrentVote();
-    setVoteComposerActive(true);
+    dispatch({
+      type: "OPEN_VOTE_COMPOSER"
+    });
   }
 
   function addVote(vote) {
-    setAllVotes([...allVotes, vote]);
-    closeVoteComposer();
+    dispatch({
+      type: "ADD_VOTE",
+      vote
+    });
   }
 
   function registerVote(vote, choice) {
-    const newVotes = allVotes.map(v =>
-      v.id !== vote.id
-        ? v
-        : {
-            ...vote,
-            choices: vote.choices.map(c =>
-              c.id !== choice.id ? c : { ...c, count: c.count + 1 }
-            )
-          }
-    );
-
-    setAllVotes(newVotes);
+    dispatch({
+      type: "REGISTER_VOTE",
+      vote,
+      choice
+    });
   }
 
   return (

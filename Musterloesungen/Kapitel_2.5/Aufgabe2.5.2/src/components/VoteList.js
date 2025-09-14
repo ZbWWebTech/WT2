@@ -6,6 +6,7 @@ export default function VoteList({
   allVotes,
   currentVoteId,
   onSelectVote,
+  onRegisterVote,
   onDismissVote
 }) {
   return (
@@ -16,6 +17,7 @@ export default function VoteList({
             key={vote.id}
             vote={vote}
             onDismissVote={onDismissVote}
+            onRegisterChoice={onRegisterVote}
           />
         ) : (
           <VoteSummary key={vote.id} vote={vote} onActivate={onSelectVote} />
