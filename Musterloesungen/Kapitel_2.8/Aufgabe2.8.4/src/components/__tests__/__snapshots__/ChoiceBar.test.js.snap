@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can render output percent 1`] = `
+<div
+  class="ChoiceBar"
+>
+  <div
+    class="Progress"
+    style="width: 33%;"
+  >
+    <div
+      class="ChoiceBarTitle"
+    >
+      Hello
+    </div>
+  </div>
+  <div
+    class="ChoiceBarBadge"
+  >
+    123
+  </div>
+</div>
+`;
