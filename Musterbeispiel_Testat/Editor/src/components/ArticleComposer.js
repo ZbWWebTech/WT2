@@ -19,10 +19,12 @@ export default function ArticleComposer({ onSave, onDeactivate }) {
   }
 
   function save() {
+    const summary = articleDescription.substring(0, 10) + "...";
     const newArticle = {
       Id: `a_${Date.now()}`, // einfache version für jetzt
       Titel: articleTitle,
-      Text: articleDescription
+      Text: articleDescription,
+      Summary: summary
     };
 
     onSave(newArticle);
