@@ -1,8 +1,8 @@
 // variante über statisches json file
-const url = "json/articles.json";
+//const url = "json/articles.json";
 
 // variante über backend node.js
-// const url = "http://localhost:5000/articles";
+const url = "http://localhost:3000/articles";
 
 
 function loadArticles() {

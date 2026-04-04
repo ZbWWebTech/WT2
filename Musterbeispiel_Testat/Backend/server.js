@@ -17,6 +17,7 @@ const server = http.createServer((req, resp) => {
     }
 
     if(req.url == "/articles") {
+        console.log("Articles requested")
         const articles = fs.readFileSync("store/articles.json", "utf8")
         resp.statusCode = 200
         resp.setHeader('Content-Type', 'application/json')
